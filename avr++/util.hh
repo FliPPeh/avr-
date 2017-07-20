@@ -80,7 +80,7 @@ template <typename T,
 				buffer[i] = glyphs[n % opt.radix];
 			}
 
-			if (n < opt.radix) {
+			if (n < static_cast<T>(opt.radix)) {
 				break;
 			}
 

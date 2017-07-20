@@ -1,6 +1,8 @@
 #ifndef AVRXX_USART_HH
 #define AVRXX_USART_HH
 
+#include "util.hh"
+
 extern "C" {
 	#include <string.h>
 
@@ -119,6 +121,14 @@ template <unsigned N>
 		inline static void send(data_type byte) noexcept
 		{
 			send(&byte, 1);
+		}
+
+		inline static void send(int num, avr::to_string_opts opt = {}) noexcept
+		{
+			char numbuf[32] = {0};
+
+			avr::to_string(num, numbuf, sizeof(numbuf), opt);
+			send(numbuf);
 		}
 
 		inline static void send(char const* data) noexcept
